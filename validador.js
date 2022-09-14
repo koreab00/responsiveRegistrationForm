@@ -1,58 +1,59 @@
-function validarCPF() {
-    if (vercpf(document.frmcpf.cpf.value))
-    {
-        document.frmcpf.submit();
-    } else {
-        errors = "1";
-        if (errors)
-            alert('CPF inválido');
-        document.retorno = (errors == '');
+ //CPF//
+ 
+ const lengthCpf = document.querySelector('#cpf')
+
+ lengthCpf.addEventListener('keypress', () =>{
+    let inputLengthCpf = lengthCpf.value.length
+
+    if (inputLengthCpf === 3 || inputLengthCpf === 7) {
+        lengthCpf.value += '.'
+    } else if (inputLengthCpf === 11) {
+        lengthCpf.value += '-'
     }
-}
+ })
 
-function vercpf(cpf) {
-    if (cpf.length != 11 ||
-        cpf == "00000000000" ||
-        cpf == "11111111111" ||
-        cpf == "22222222222" ||
-        cpf == "33333333333" ||
-        cpf == "44444444444" ||
-        cpf == "55555555555" ||
-        cpf == "66666666666" ||
-        cpf == "77777777777" ||
-        cpf == "88888888888" ||
-        cpf == "99999999999")
-        return false;
+//Telefone//
 
-    add = 0;
+const lenghtCel = document.querySelector('#cel')
 
-    for (i = 0; i &lt; 9; i++)
-            add += parseInt(cpf.charAt(i)) * (10 - i);
-    rev = 11 - (add % 11);
-    if (rev == 10 || rev == 11)
-        rev = 0;
-    if (rev != parseInt(cpf.charAt(9)))
-        return false;
-    add = 0;
-            for (i = 0; i &lt; 10; i++)
-            add += parseInt(cpf.charAt(i)) * (11 - i);
-    rev = 11 - (add % 11);
-    if (rev == 10 || rev == 11)
-        rev = 0;
-    if (rev != parseInt(cpf.charAt(10)))
-        return false;
-    alert('O CPF INFORMADO É VÁLIDO.');
-    return true;
-}
+lenghtCel.addEventListener('keypress' , () =>{
+	let inputLenghtCel = lenghtCel.value.length
 
-$j(document).ready(function () {
+	if (inputLenghtCel === 0) {
+		lenghtCel.value += '('
+	} else if (inputLenghtCel === 3) {
+		lenghtCel.value += ')'
+	} else if (inputLenghtCel === 9) {
+		lenghtCel.value += '-'
+	}
+})
 
-    $j("#meuForm").validate({
-        rules: {
-            NrCpf: {NrCpf: true, required: true}
-        },
-        messages: {
-            NrCpf: {NrCpf: alert('CPF Inválido')}
-        }
-    });
+//CEP//
+
+let cep = document.querySelector('#cep')
+let rua = document.querySelector('#rua')
+let bairro = document.querySelector('#bairro')
+let cidade = document.querySelector('#cidade')
+let estado = document.querySelector('#estado')
+
+cep.value = '01001000';
+
+cep.addEventListener('blur', function(e) {
+	let cep = e.target.value;
+	let script = document.createElement('script');
+	script.src = 'https://viacep.com.br/ws/'+cep+'/json/?callback=popularForm';
+	document.body.appendChild(script);
 });
+
+function popularForm(resposta) {
+	if("erro" in resposta) {
+		alert('CEP não encontrado');
+		return;
+	}
+
+console.log(resposta);
+rua.value = reposta.logradouro;
+bairro.value = resposta.bairro;
+cidade.value = resposta.localidade;
+estado.value = resposta.uf;
+}

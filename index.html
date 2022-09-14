@@ -31,7 +31,7 @@
 
                         <div class="input-field">
                             <label>Identidade:</label>
-                            <input type="text" placeholder="Digite a identidade..." required>
+                            <input type="number" placeholder="Digite a identidade..." required>
                         </div>
 
                         <div class="input-field">
@@ -41,17 +41,22 @@
 
                         <div class="input-field">
                             <label>CPF:</label>
-                            <input type="text" placeholder="Digite o CPF..." required>
+                            <input id="cpf" type="text" placeholder="Digite o CPF..." autocomplete="none" maxlength="14" required>
                         </div>
 
                         <div class="input-field">
-                            <label>Naturalidade:</label>
-                            <input type="date" placeholder="Digite a cidade..." required>
+                            <label id="campo_cidade">Naturalidade:
+                                <select id="cidade"></select>
+                            </label>
                         </div>
 
                         <div class="input-field">
-                            <label>UF:</label>
-                            <input type="text" placeholder="Digite o estado..." required>
+
+                            <label id="campo_estado">UF:
+                                <select id="estado"></select>
+                            </label>
+                            
+
                         </div>
 
                         <div class="input-field">
@@ -87,25 +92,49 @@
                             <input type="text" placeholder="Digite o complemento..." required>
                         </div>
 
-                        <div id="cidadeEndereco" class="input-field">
-                            <label>Cidade:</label>
-                            <input type="text" placeholder="Digite a Cidade..." required>
+                        <div class="input-field">
+
+                            <label id="campo_cidade">Cidade:
+                                <select id="cidade"></select>
+                            </label>
+                        
                         </div>
 
-                        <div id="ufEndereco" class="input-field">
-                            <label>UF:</label>
-                            <input type="date" placeholder="Digite o Estado..." required>
+                        <div class="input-field">
+                            
+                            <label id="campo_estado">
+                                Estado
+                                <select id="estado"></select>
+                            </label>
+
                         </div>
 
-                        <div id="cep" class="input-field">
-                            <label>CEP:</label>
-                            <input type="text" placeholder="Digite o cep..." required>
+                        <div class="input-field">
+                            
+                            <label>
+                                País
+                                <select id="pais"></select>
+                            </label>
+
+                        </div>
+
+                        <div class="input-field">
+                            <label for="cep">CEP:</label>
+                            <input id="cep" name="cep" type="text" placeholder="Digite o cep..." maxlength="8" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Celular:</label>
+                            <input id="cel" type="numeric" placeholder="Digite o celular..." maxlength="14" required>
                         </div>
 
                     </div>
                 </div>
 
             </div>
+
+            <script src="validador.js"></script>
+
         </form>
     </div>
 
