@@ -51,8 +51,12 @@ body {
     background-color: #fff;
 }
 
-.container form .details {
+.container form .dados {
     margin-top: 30px;
+}
+
+.container form .endereco {
+    margin-top: 10px;
 }
 
 .container form .title {
@@ -68,6 +72,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 form .fields .input-field {
@@ -84,6 +89,21 @@ form .fields .input-field {
 }
 
 .input-field input {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
     height: 42px;
     margin: 8px 0;
+}
+
+.input-field input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+.input-field input[type="date"]:valid{
+    color: #333;
 }
